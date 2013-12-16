@@ -1,8 +1,10 @@
-source 'https://ruby.taobao.org'
+source 'http://ruby.taobao.org'
+
 ruby '2.0.0'
 
 gem 'rails', '4.0.2'
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap-sass', '2.2.2'
+gem 'flatui-rails'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'faker', '1.2.0'
 gem 'will_paginate', '3.0.4'
@@ -30,3 +32,6 @@ group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
 
+group :procedure do
+	gem 'pg'
+end

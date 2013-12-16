@@ -10,25 +10,19 @@
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
-    </aside>
-    <div class="span8">
+	</aside>
+	<nav class="span8">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
-    </div>
+	</nav>
   </div>
 <% else %>
   <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
-
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-
+    <h1>Weibo on ROR</h1>
+	<p>It is a website seem like a microblog</p>
+	<p>In here,you can sign up a new account,post your short message, and add your friend to your following list to get new message from them.</p>
+	<p>This project is on Ruby on rails framework,Base on<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a></p>
     <%= link_to "Sign up now!", signup_path,
                                 class: "btn btn-large btn-primary" %>
   </div>
-
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% end %>
