@@ -1,28 +1,37 @@
-== README
+Ruby on rails 大作业
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1、(11091222/blog)实现具有发布/删除文章，发布/删除评论的微型博客系统，使用flat-ui的css组建进行美化界面，实现最基本的数据有效性检验。
+2、(11091222/myruby)实现具有注册，登录，发布/删除微博，关注/取消关注用户，查看用户粉丝/关注的功能完备的微博系统。使用flat-ui进行界面美化。实现完备的访问权限控制，数据有效性检验，可动态查看关注的用户最新微博。
+由于1的实现较为简单，所以以下只介绍2。
 
-Things you may want to cover:
+开发环境
 
-* Ruby version
+Fedora 19
+Vim
+Chrome&firefox
+Ruby 2.0.0
+Rails 4.0.2
+Gem 2.0.14
+介绍
 
-* System dependencies
+实现了User，Micropost，Relationship三个表，其中User has_many microposts，Micropost belongs_to User,通过Relationship来实现User与User之间的关注关系。
+User类中，email唯一，大小写不敏感，有效性正则表达式检验。用rember_token来校验登录后的cookie。用户密码用encrypt来hash实现非明文加密，密码长度最小为6,用户名长度最大50。
+每条微博长度不能超过250，且必须指定发布的用户，一旦用户被删除，则根据依赖关系微博自动被删除。通过嵌入式SQL的使用，很容易实现关注用户的微博按发布时间排序。
+使用session的new和destroy来实现对cookies的写入，从而实现对登录后权限的控制。
+对与用户的大多数操作，使用flash[:type]="message"来提示用户是否发布微博成功，是否登录成功等信息。
 
-* Configuration
+用户头像：通过用户注册邮箱，自动找寻gravatar.com上的头像并嵌入。
 
-* Database creation
+部署页面
 
-* Database initialization
+​https://forwil.herokuapp.com//
 
-* How to run the test suite
+感想
 
-* Services (job queues, cache servers, search engines, etc.)
+Ruby是门很神奇的语言，首先它是一门100%面向对象的语言，而令人惊讶的是它居然能拥有很强的灵活性，在学Ruby on rails的时候很惊讶它居然能通过自己很强的元编程能力而创造出SPEC中的自动测试程序。而因为一些规定(比如函数调用可以不用括号，最后一个hash可以省略大括号等等)使得它读起来和自然语言十分相近。而因为它吸收了很多函数式编程的特性(闭包，lambda表达式等，惰性求值)，所以它也能用很短很简洁的代码实现很复杂的语义。
 
-* Deployment instructions
+自己在之前就接触过一些web开发，用过python的django和webpy，原生php+mysql。而用ruby on rails的时候感觉和之前的开发方式和很不一样，因为rails的能力实在太强了，所以开发过程一是基本不用你写html和css，而且不用使用sql语句去操作数据库。只需要用Ruby去定义数据库结构和网页功能，ror就能帮你生成大量的代码。但是我认为ruby on rails并不适合初学web开发的人，因为它会隐去很多关于html，css和cgi的细节。而如果是一个有过一定web开发经历的人，我想他一定会喜欢ruby on rails的敏捷开发哲学的。
 
-* ...
+本来在很久之前就把一个基本的博客做出来了（上面说的作业1），因为读了(rails Tutorail)​http://railstutorial-china.org/，决定挑战一下这个功能齐全而且很美观的微博系统，在学习和实现的过程中深感“测试驱动”的神奇之处，却也苦于spec专用语言的语义太强。不过在读完11章过后终于是把微博做出来了。
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+在这一次大作业完成的
